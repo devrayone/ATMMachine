@@ -1,9 +1,15 @@
 package ru.devray.study.atmmachine;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Launcher {
+
+    public static final Logger log = LogManager.getRootLogger();
+
     public static void main(String[] args) {
         //пачка купюр, которую пользватель вносит в банкомат
         List<Banknote> money = new ArrayList<Banknote>();
@@ -20,6 +26,7 @@ public class Launcher {
         ATMMachine atm = new ATMMachine();
 
         atm.putMoneyOnBalance(money);
-        System.out.println(money);
+
+        log.debug(money);
     }
 }

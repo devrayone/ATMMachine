@@ -3,7 +3,7 @@ package ru.devray.study.atmmachine;
 /**
  * Класс банкноты (денежной купюры)
  */
-public class Banknote {
+public class Banknote implements Comparable<Banknote> {
     private final Values value;
     private final boolean isNotDamaged;
     private final boolean isValid;
@@ -28,10 +28,12 @@ public class Banknote {
 
     @Override
     public String toString() {
-        return "Banknote{" +
-                "value=" + value +
-                ", isNotDamaged=" + isNotDamaged +
-                ", isValid=" + isValid +
-                '}';
+        return "{"+value.getNominal() + "$,OK=" + isNotDamaged +
+                "V=" + isValid + "}";
+    }
+
+    @Override
+    public int compareTo(Banknote b) {
+        return Integer.compare(this.value.getNominal(), b.value.getNominal());
     }
 }

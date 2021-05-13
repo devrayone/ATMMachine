@@ -12,9 +12,13 @@ public enum Values {
     TWO(2),
     ONE(1);
 
-    int nominal;
+    private int nominal;
 
     Values(int nominal) {
         this.nominal = nominal;
+    }
+
+    public int getNominal() {
+        return nominal;
     }
 }

@@ -15,6 +15,8 @@ public class ATMMachine {
         this.mechanics = new ATMMechanics();
     }
 
+
+
     public void putMoneyOnBalance(List<Banknote> banknotes){
         //пользователь вставляет купюры в купюроприемник
         mechanics.acceptBanknotes(banknotes);
@@ -24,5 +26,8 @@ public class ATMMachine {
         int sum = mechanics.processBanknotes();
 
         ui.printBalance(sum);
+        mechanics.sortRejectedBanknotes();
+        List<Banknote> invalidBanknotes = mechanics.getCurrentlyRejectedBanknotes();
+        ui.printRejectedBanknotes(invalidBanknotes);
     }
 }

@@ -11,4 +11,9 @@ public class ATMUserInterface {
         System.out.println(String.format("Было внесено %d долларов на счет.", balance));
         System.out.println("=============================");
     }
+
+    public void printRejectedBanknotes(List<Banknote> banknotes){
+        System.out.println("Следующие банкноты поддельные!");
+        System.out.println(banknotes);
+    }
 }

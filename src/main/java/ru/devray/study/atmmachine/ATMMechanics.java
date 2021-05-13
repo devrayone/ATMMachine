@@ -16,9 +16,17 @@ public class ATMMechanics {
     //контейнер отбракованных купюр
     List<Banknote> rejectedContainer;
 
+    //поддельные банкноты, внесенные текущим пользователем
+    List<Banknote> currentlyRejectedBanknotes;
+
     public ATMMechanics() {
         this.incassationContainer = new ArrayList<>();
         this.rejectedContainer = new ArrayList<>();
+        this.currentlyRejectedBanknotes = new ArrayList<>();
+    }
+
+    public List<Banknote> getCurrentlyRejectedBanknotes() {
+        return currentlyRejectedBanknotes;
     }
 
     /**
@@ -55,6 +63,7 @@ public class ATMMechanics {
                 //если купюра поддельная
                 if (!b.isValid()){
                     System.err.println("Поддельная купюра! " + b);
+                    currentlyRejectedBanknotes.add(b);
                 } else {
                     sum += b.getValue().getNominal();
                 }
@@ -65,5 +74,13 @@ public class ATMMechanics {
         System.out.println("rejected " + rejectedContainer);
         System.out.println("sum" + sum + "$");
         return sum;
+    }
+
+    /**
+     * сортировка -  в начале списка всегда оказывались поврежденные купюры (при наличии).
+     */
+    public void sortRejectedBanknotes() {
+        rejectedContainer.sort((b1, b2)->Boolean.compare(b1.isNotDamaged(), b2.isNotDamaged()));
+        System.out.println("rejectedContainer - " + rejectedContainer);
     }
 }

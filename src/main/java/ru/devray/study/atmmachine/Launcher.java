@@ -10,6 +10,10 @@ public class Launcher {
         money.add(new Banknote(Values.FIFTY, true, true));
         money.add(new Banknote(Values.TWENTY, true, true));
         money.add(new Banknote(Values.TWENTY, false, true));
+        money.add(new Banknote(Values.HUNDRED, false, false));
+        money.add(new Banknote(Values.HUNDRED, true, false));
+        money.add(new Banknote(Values.HUNDRED, false, false));
+        money.add(new Banknote(Values.TEN, true, true));
         money.add(new Banknote(Values.TEN, true, false));
         money.add(new Banknote(Values.FIVE, true, true));
 

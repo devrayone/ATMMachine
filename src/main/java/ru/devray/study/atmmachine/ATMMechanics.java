@@ -46,12 +46,9 @@ public class ATMMechanics {
      * Сортируем купюры в обратном порядке по номиналу
      */
     public void sortBanknotes() {
-        inputBanknotes.sort((b1, b2)->{
-            int banknoteNominal1 = b1.getValue().getNominal();
-            int banknoteNominal2 = b2.getValue().getNominal();
-            return banknoteNominal1 > banknoteNominal2 ? -1 : banknoteNominal1 == banknoteNominal2 ? 0 : 1;
-        });
-        log.debug("Купбры отсортированы в обратном порядке: " + inputBanknotes);
+        inputBanknotes.sort((b1, b2)->
+                Integer.compare( b2.getValue().getNominal(), b1.getValue().getNominal()) );
+        log.debug("Купюры отсортированы в обратном порядке: " + inputBanknotes);
     }
 
     /**

@@ -7,6 +7,13 @@ import java.util.List;
  */
 public class ATMUserInterface {
     public void printBalance(int balance){
-        System.out.println("Balance not available");
+        System.out.println("=============================");
+        System.out.println(String.format("Было внесено %d долларов на счет.", balance));
+        System.out.println("=============================");
+    }
+
+    public void printRejectedBanknotes(List<Banknote> banknotes){
+        System.out.println("Следующие банкноты поддельные!");
+        System.out.println(banknotes);
     }
 }

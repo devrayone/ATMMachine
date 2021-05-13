@@ -16,36 +16,45 @@ public class ATMMechanics {
     //контейнер отбракованных купюр
     List<Banknote> rejectedContainer;
 
+    //поддельные банкноты, внесенные текущим пользователем
+    List<Banknote> currentlyRejectedBanknotes;
+
     public ATMMechanics() {
         this.incassationContainer = new ArrayList<>();
         this.rejectedContainer = new ArrayList<>();
+        this.currentlyRejectedBanknotes = new ArrayList<>();
     }
 
-    public void acceptBanknotes(List<Banknote> banknotes) {
+    public List<Banknote> getCurrentlyRejectedBanknotes() {
+        return currentlyRejectedBanknotes;
+    }
 
+    /**
+     * Приняли купюры в купюроприемник
+     * @param inputBanknotes
+     */
+    public void acceptBanknotes(List<Banknote> inputBanknotes) {
+        this.inputBanknotes = inputBanknotes;
     }
 
     /**
      * Сортируем купюры в обратном порядке по номиналу
-     * @param banknotes
      */
-    public List<Banknote> sortBanknotes(List<Banknote> banknotes) {
-        banknotes.sort((b1, b2)->{
+    public void sortBanknotes() {
+        inputBanknotes.sort((b1, b2)->{
             int banknoteNominal1 = b1.getValue().getNominal();
             int banknoteNominal2 = b2.getValue().getNominal();
             return banknoteNominal1 > banknoteNominal2 ? -1 : banknoteNominal1 == banknoteNominal2 ? 0 : 1;
         });
-        System.out.println(banknotes);
-        return banknotes;
+        System.out.println(inputBanknotes);
     }
 
     /**
      * проверку на отсутствие физических повреждений и на подлинность (наличие водных знаков)
-     * @param banknotes
      */
-    public int processBanknotes(List<Banknote> banknotes){
+    public int processBanknotes(){
         int sum = 0;
-        for (Banknote b : banknotes) {
+        for (Banknote b : inputBanknotes) {
             //купюра платежеспособна
             if (b.isNotDamaged() && b.isValid()) {
                 incassationContainer.add(b);
@@ -54,6 +63,7 @@ public class ATMMechanics {
                 //если купюра поддельная
                 if (!b.isValid()){
                     System.err.println("Поддельная купюра! " + b);
+                    currentlyRejectedBanknotes.add(b);
                 } else {
                     sum += b.getValue().getNominal();
                 }
@@ -64,5 +74,13 @@ public class ATMMechanics {
         System.out.println("rejected " + rejectedContainer);
         System.out.println("sum" + sum + "$");
         return sum;
+    }
+
+    /**
+     * сортировка -  в начале списка всегда оказывались поврежденные купюры (при наличии).
+     */
+    public void sortRejectedBanknotes() {
+        rejectedContainer.sort((b1, b2)->Boolean.compare(b1.isNotDamaged(), b2.isNotDamaged()));
+        System.out.println("rejectedContainer - " + rejectedContainer);
     }
 }

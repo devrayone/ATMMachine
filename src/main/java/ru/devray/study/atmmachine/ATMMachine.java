@@ -16,10 +16,13 @@ public class ATMMachine {
     }
 
     public void putMoneyOnBalance(List<Banknote> banknotes){
+        //пользователь вставляет купюры в купюроприемник
         mechanics.acceptBanknotes(banknotes);
         //TODO обработка и подсчет купюр
         //купюры сортируются по номиналу, по убыванию
-        mechanics.sortBanknotes(banknotes);
-        mechanics.processBanknotes(banknotes);
+        mechanics.sortBanknotes();
+        int sum = mechanics.processBanknotes();
+
+        ui.printBalance(sum);
     }
 }

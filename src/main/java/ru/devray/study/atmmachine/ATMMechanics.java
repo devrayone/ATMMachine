@@ -21,31 +21,32 @@ public class ATMMechanics {
         this.rejectedContainer = new ArrayList<>();
     }
 
-    public void acceptBanknotes(List<Banknote> banknotes) {
-
+    /**
+     * Приняли купюры в купюроприемник
+     * @param inputBanknotes
+     */
+    public void acceptBanknotes(List<Banknote> inputBanknotes) {
+        this.inputBanknotes = inputBanknotes;
     }
 
     /**
      * Сортируем купюры в обратном порядке по номиналу
-     * @param banknotes
      */
-    public List<Banknote> sortBanknotes(List<Banknote> banknotes) {
-        banknotes.sort((b1, b2)->{
+    public void sortBanknotes() {
+        inputBanknotes.sort((b1, b2)->{
             int banknoteNominal1 = b1.getValue().getNominal();
             int banknoteNominal2 = b2.getValue().getNominal();
             return banknoteNominal1 > banknoteNominal2 ? -1 : banknoteNominal1 == banknoteNominal2 ? 0 : 1;
         });
-        System.out.println(banknotes);
-        return banknotes;
+        System.out.println(inputBanknotes);
     }
 
     /**
      * проверку на отсутствие физических повреждений и на подлинность (наличие водных знаков)
-     * @param banknotes
      */
-    public int processBanknotes(List<Banknote> banknotes){
+    public int processBanknotes(){
         int sum = 0;
-        for (Banknote b : banknotes) {
+        for (Banknote b : inputBanknotes) {
             //купюра платежеспособна
             if (b.isNotDamaged() && b.isValid()) {
                 incassationContainer.add(b);

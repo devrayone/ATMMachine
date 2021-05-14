@@ -1,8 +1,5 @@
 package ru.devray.study.atmmachine;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.List;
 
 /**
@@ -10,18 +7,15 @@ import java.util.List;
  */
 public class ATMMachine {
 
-    public static final Logger log = LogManager.getRootLogger();
-
-    private ATMUserInterface ui;
-    private ATMMechanics mechanics;
+    private final ATMUserInformation ui;
+    private final ATMMechanics mechanics;
 
     public ATMMachine() {
-        this.ui = new ATMUserInterface();
+        this.ui = new ATMUserInformation();
         this.mechanics = new ATMMechanics();
     }
 
-
-    public void putMoneyOnBalance(List<Banknote> banknotes){
+    public void putMoneyOnBalance(List<Banknote> banknotes) {
         //пользователь вставляет купюры в купюроприемник
         mechanics.acceptBanknotes(banknotes);
 
@@ -38,4 +32,5 @@ public class ATMMachine {
         List<Banknote> invalidBanknotes = mechanics.getCurrentlyRejectedBanknotes();
         ui.printRejectedBanknotes(invalidBanknotes);
     }
+
 }

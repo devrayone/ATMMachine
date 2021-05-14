@@ -12,7 +12,7 @@ public enum Values {
     TWO(2),
     ONE(1);
 
-    private int nominal;
+    private final int nominal;
 
     Values(int nominal) {
         this.nominal = nominal;

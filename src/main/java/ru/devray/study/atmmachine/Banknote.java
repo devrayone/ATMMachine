@@ -28,8 +28,8 @@ public class Banknote implements Comparable<Banknote> {
 
     @Override
     public String toString() {
-        return "{"+value.getNominal() + "$,OK=" + isNotDamaged +
-                "V=" + isValid + "}";
+        return value.getNominal() + "$,OK=" + isNotDamaged +
+                "V=" + isValid ;
     }
 
     @Override

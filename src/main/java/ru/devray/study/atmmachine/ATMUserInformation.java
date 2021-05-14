@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Пользовательский интерфейс, дисплей, на котором отражается информация
  */
-public class ATMUserInterface {
+public class ATMUserInformation {
 
     public static final Logger log = LogManager.getRootLogger();
 

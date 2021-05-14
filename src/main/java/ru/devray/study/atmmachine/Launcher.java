@@ -12,7 +12,7 @@ public class Launcher {
 
     public static void main(String[] args) {
         //пачка купюр, которую пользватель вносит в банкомат
-        List<Banknote> money = new ArrayList<Banknote>();
+        List<Banknote> money = new ArrayList<>();
         money.add(new Banknote(Values.FIFTY, true, true));
         money.add(new Banknote(Values.TWENTY, true, true));
         money.add(new Banknote(Values.TWENTY, false, true));
@@ -22,11 +22,14 @@ public class Launcher {
         money.add(new Banknote(Values.TEN, true, true));
         money.add(new Banknote(Values.TEN, true, false));
         money.add(new Banknote(Values.FIVE, true, true));
+        money.add(new Banknote(Values.TWO, true, true));
+        money.add(new Banknote(Values.TWO, true, false));
+        money.add(new Banknote(Values.ONE, true, true));
 
         ATMMachine atm = new ATMMachine();
 
         atm.putMoneyOnBalance(money);
 
-        log.debug(money);
+        log.debug(String.format("%s",money));
     }
 }

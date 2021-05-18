@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class ATMMachine {
 
-    public static final Logger log = LogManager.getRootLogger();
+    //public static final Logger log = LogManager.getRootLogger();
 
     private ATMUserInterface ui;
     private ATMMechanics mechanics;

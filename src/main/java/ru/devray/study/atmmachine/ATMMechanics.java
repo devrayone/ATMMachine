@@ -4,8 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class ATMMechanics {
@@ -51,7 +49,7 @@ public class ATMMechanics {
             int banknoteNominal2 = b2.getValue().getNominal();
             return banknoteNominal1 > banknoteNominal2 ? -1 : banknoteNominal1 == banknoteNominal2 ? 0 : 1;
         });
-        log.debug("Купбры отсортированы в обратном порядке: " + inputBanknotes);
+        log.debug("Купюры отсортированы в обратном порядке: " + inputBanknotes);
     }
 
     /**
@@ -62,7 +60,7 @@ public class ATMMechanics {
         for (Banknote b : inputBanknotes) {
             log.trace("на данной итерации обрабатывается купюра " + b);
             //купюра платежеспособна
-            if (b.isNotDamaged() && b.isValid()) {
+            if (b.unharmed() && b.isValid()) {
                 log.info("Купюра " + b + " платежеспособна и участвует в подсчете суммы.");
                 incassationContainer.add(b);
                 sum += b.getValue().getNominal();
@@ -87,7 +85,7 @@ public class ATMMechanics {
      * сортировка -  в начале списка всегда оказывались поврежденные купюры (при наличии).
      */
     public void sortRejectedBanknotes() {
-        rejectedContainer.sort((b1, b2)->Boolean.compare(b1.isNotDamaged(), b2.isNotDamaged()));
+        rejectedContainer.sort((b1, b2)->Boolean.compare(b1.unharmed(), b2.unharmed()));
         log.debug("rejectedContainer - " + rejectedContainer);
     }
 }

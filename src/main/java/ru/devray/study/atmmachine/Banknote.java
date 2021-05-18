@@ -5,12 +5,12 @@ package ru.devray.study.atmmachine;
  */
 public class Banknote implements Comparable<Banknote> {
     private final Values value;
-    private final boolean isNotDamaged;
+    private final boolean unharmed;
     private final boolean isValid;
 
-    public Banknote(Values value, boolean isNotDamaged, boolean isValid) {
+    public Banknote(Values value, boolean unharmed, boolean isValid) {
         this.value = value;
-        this.isNotDamaged = isNotDamaged;
+        this.unharmed = unharmed;
         this.isValid = isValid;
     }
 
@@ -18,8 +18,8 @@ public class Banknote implements Comparable<Banknote> {
         return value;
     }
 
-    public boolean isNotDamaged() {
-        return isNotDamaged;
+    public boolean unharmed() {
+        return unharmed;
     }
 
     public boolean isValid() {
@@ -28,8 +28,8 @@ public class Banknote implements Comparable<Banknote> {
 
     @Override
     public String toString() {
-        return "{"+value.getNominal() + "$,OK=" + isNotDamaged +
-                "V=" + isValid + "}";
+        return "{" + value.getNominal() + "$, OK=" + unharmed +
+                ", V=" + isValid + "}";
     }
 
     @Override
